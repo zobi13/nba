@@ -10,7 +10,7 @@ class PlayersController extends Controller
     public function show(Player $player)
     {
         $player->load(['team']);
-        info($player);
+
         return view('/players.player', compact('player'));
     }
 }

@@ -9,9 +9,6 @@
             <li>
                 <a href="{{ route('team', ['team' => $team->id ]) }}">
                     {{ $team->name }}
-                    {{ $team->email }}
-                    {{ $team->address }}
-                    {{ $team->city }}
                 </a>
             </li>
         @endforeach

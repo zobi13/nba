@@ -17,7 +17,8 @@ class TeamsController extends Controller
     public function show(Team $team)
     {
         $team->load(['players']);
-        
+        $team->load(['comments']);
+
         return view('teams.show', compact('team'));
     }
 }   
