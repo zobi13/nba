@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\PlayersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/teams', [TeamsController::class, 'index']); //treba middleware auth
+Route::get('/teams/{team}', [TeamsController::class, 'show'])->name('team'); //treba middleware auth
+Route::get('/players/{player}', [PlayersController::class, 'show'])->name('player'); //treba middleware auth
