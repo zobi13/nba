@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\\Models\Team;
-use App\\Models\User;
 
 use App\Http\Requests\CommentsRequest;
+use App\Models\Team;
+use App\Models\Comments;
+use App\Mail\CommentReceived;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsController extends Controller
 {
@@ -18,10 +20,13 @@ class CommentsController extends Controller
             'team_id' => $team->id,
             'user_id' => auth()->user()->id
         ];
-
-        Comment::create(array_merge($data, $dataUserTeamRelation))
-        // $team->comments()->create($data);
-
+        
+        // Comments::create(array_merge($data, $dataUserTeamRelation));
+        $comment = $team->comments()->create(array_merge($data, $dataUserTeamRelation));
+        
+        Mail::to($team)->send(
+            new CommentReceived($comment)
+        );
         return back();
     }
 }

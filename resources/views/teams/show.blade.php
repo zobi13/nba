@@ -27,11 +27,12 @@
     <h5>
         Comments
     </h5>
-    @forelse($post->comments as $comment)
-        {{ $comment->content }}
+    @forelse($team->comments as $comment)
+        <div> {{ $comment->content }} </div>
         <div>
-            By: {{ $user->name }}
+            By: {{ $comment->user->name }}
         </div>
+        <hr>
     @empty
         <span> No comments </span>
     @endforelse

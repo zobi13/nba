@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/players/{player}', [PlayersController::class, 'show'])->name('player');
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/teams/{team}/comments', [CommentsController::class, 'store'])->name('createComment');
+
+    
 });
 
 Route::group(['middleware' => 'guest'], function() {

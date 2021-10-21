@@ -21,6 +21,7 @@ class AuthController extends Controller
         $data['password'] = Hash::make($data['password']);
         
         $newUser = User::create($data);
+
         auth()->login($newUser);
 
         return redirect('/teams');
